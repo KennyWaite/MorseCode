@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+
+        <title>Morse Code Translator</title>
+    </head>
+    <body>
+        <main class="contOut">
+            <h2>Morse Code Translator</h2>
+            <div class="contIn">
+                <div class="contIn__elements">
+                    <h3 class="contIn--textMargin">Morse here</h3>
+                    <input
+                        type="text"
+                        placeholder="Please input Morse Code here"
+                        class="contIn__input"
+                        id="morseText"
+                    />
+                </div>
+                <div class="contIn__section">
+                    <button class="contIn__btn" id="toMorse">
+                        English<br />
+                        to<br />
+                        Morse<br />
+                    </button>
+                    <button class="contIn__btn" id="toEnglish">
+                        Morse<br />
+                        to<br />
+                        English<br />
+                    </button>
+
+                    <button class="contIn__btn contIn__btn--small" id="clear">
+                        Clear All
+                    </button>
+                </div>
+                <div class="contIn__elements">
+                    <h3 class="contIn--textMargin">English here</h3>
+                    <input
+                        type="text"
+                        placeholder="Please input English here"
+                        class="contIn__input"
+                        id="englishText"
+                    />
+                </div>
+            </div>
+        </main>
+        <script src="./script.js"></script>
+    </body>
+</html>

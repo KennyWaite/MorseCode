@@ -93,6 +93,49 @@ const alphabet2 = {
     10: "-----",
 };
 
+//Function to translate Morsecode input into English
+// >>>check if things are string/object/array and edit this
+// something
+const toEngFunct = (text) => {
+    if (mVal && eVal === "") {
+        alert("Please input for decoding");
+
+        if (eVal === "string") {
+            alert("English Text Side needs to be clear for decoding");
+        }
+
+        return text
+            .toLowerCase()
+            .split("")
+            .map((letter) => {
+                if (alphabet1[letter]) return letter;
+            })
+            .join("");
+    }
+
+    //Function to clear text inputs
+    const toClear = () => {
+        mVal = "";
+        eVal = "";
+    };
+
+    //Function to translate Morsecode input into English
+    const toMorseFunct = (text) => {
+        if (mVal && eVal === "") {
+            alert("Please input for decoding");
+        }
+    };
+    if (mVal === "string") {
+        alert("Morse Code side needs to be clear for encoding");
+    }
+    return text
+        .split("")
+        .map((code) => {
+            if (alphabet2[code]) return code;
+        })
+        .join("");
+};
+
 //Adding event for when Morsecode to English button is clicked
 toEnglishBtn.addEventListener("click", (event) => {
     mVal += event.target;
@@ -111,40 +154,3 @@ toEnglishBtn.addEventListener("click", (event) => {
 clear.addEventListener("click", (event) => {
     return toClear();
 });
-
-//Function to translate Morsecode input into English
-// >>>check if things are string/object/array and edit this
-// something
-
-const toEngFunct = (text) => {
-    if (eVal === "string") {
-        alert("English Text Side needs to be clear for decoding");
-    }
-
-    return text
-        .toLowerCase()
-        .split("")
-        .map((letter) => {
-            if (alphabet1[letter]) return letter;
-        })
-        .join("");
-};
-
-//Function to clear text inputs
-const toClear = () => {
-    mVal = "";
-    eVal = "";
-};
-
-//Function to translate Morsecode input into English
-const toMorseFunct = (text) => {
-    if (mVal === "string") {
-        alert("Morse Code side needs to be clear for encoding");
-    }
-    return text
-        .split("")
-        .map((code) => {
-            if (alphabet2[code]) return code;
-        })
-        .join("");
-};

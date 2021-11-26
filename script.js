@@ -1,67 +1,16 @@
 //Accessing the DOM and setting values
-const toEnglish = document.getElementById("toEnglish");
-const toMorse = document.getElementById("toMorse");
+const toEnglishBtn = document.getElementById("toEnglish");
+const toMorseBtn = document.getElementById("toMorse");
 const clear = document.getElementById("clear");
 const englishText = document.getElementById("englishText");
 const morseText = document.getElementById("morseText");
 
 // accessing text inside inputs
-let words1 = morseText.innerText;
-let words2 = englishText.innerText;
-
-//Adding event for when English to Morsecode button is clicked
-toMorse.addEventListener("click", (event) => {
-    console.log("1", words1);
-    console.log("2", words2);
-    englishText.innerText = event.target;
-    result = words1toMorseFunct(words2);
-
-    return result;
-});
-
-//Adding event for when Morsecode to English button is clicked
-toEnglish.addEventListener("click", (event) => {
-    // array = [];
-    // words += event.target;
-    // array.push(toMorseFunct(englishText.innerText));
-    return toEngFunct();
-});
-
-//Adding clear all text inputs when clear button is clicked
-clear.addEventListener("click", (event) => {
-    toClear();
-    return;
-});
-
-//Function to translate Morsecode input into English
-// >>>check if things are string/object/array and edit this
-// something
-
-const toEngFunct = (text) => {
-    return text
-        .toLowerCase()
-        .split("")
-        .map((letter) => {
-            if (alphabet[letter]) return letter;
-        })
-        .join("");
-};
-
-//Function to clear text inputs
-const toClear = () => {
-    words1 = "";
-    words2 = "";
-};
-
-//Function to translate Morsecode input into English
-const toMorseFunct = (textStr) => {
-    words2;
-    alphabet;
-    return;
-};
+let mVal = morseText.value;
+let eVal = englishText.value;
 
 //Object of alphabet to check inputs against
-const alphabet = {
+const alphabet1 = {
     ".-": "a",
     "-...": "b",
     "-.-.": "c",
@@ -89,6 +38,8 @@ const alphabet = {
     "-.--": "y",
     "--..": "z",
 
+    " ": " ",
+
     ".----": "1",
     "..---": "2",
     "...--": "3",
@@ -99,4 +50,101 @@ const alphabet = {
     "---..": "8",
     "----.": "9",
     "-----": "0",
+};
+
+const alphabet2 = {
+    a: ".-",
+    c: "-.-.",
+    b: "-...",
+    d: "-..",
+    e: ".",
+    f: "..-.",
+    g: "--.",
+    h: "....",
+    j: ".---",
+    i: "..",
+    k: "-.-",
+    l: ".-..",
+    m: "--",
+    n: "-.",
+    o: "---",
+    p: ".--.",
+    q: "--.-",
+    r: ".-.",
+    s: "...",
+    t: "-",
+    u: "..-",
+    v: "...-",
+    w: ".--",
+    x: "-..-",
+    y: "-.--",
+    z: "--..",
+
+    " ": " ",
+    1: ".----",
+    2: "..---",
+    3: "...--",
+    4: "....-",
+    5: ".....",
+    6: "-....",
+    7: "--...",
+    8: "---..",
+    9: "----.",
+    10: "-----",
+};
+
+//Adding event for when Morsecode to English button is clicked
+toEnglishBtn.addEventListener("click", (event) => {
+    mVal += event.target;
+    let result = toEngFunct(mVal);
+    return (eVal += result);
+});
+
+//Adding event for when English to Morsecode button is clicked
+toEnglishBtn.addEventListener("click", (event) => {
+    eVal += event.target;
+    let result = toMorseFunct(eVal);
+    return (mVal += result);
+});
+
+//Adding clear all text inputs when clear button is clicked
+clear.addEventListener("click", (event) => {
+    return toClear();
+});
+
+//Function to translate Morsecode input into English
+// >>>check if things are string/object/array and edit this
+// something
+
+const toEngFunct = (text) => {
+    if (eVal === "string") {
+        alert("English Text Side needs to be clear for decoding");
+    }
+
+    return text
+        .toLowerCase()
+        .split("")
+        .map((letter) => {
+            if (alphabet1[letter]) return letter;
+        })
+        .join("");
+};
+
+//Function to clear text inputs
+const toClear = () => {
+    mVal = "";
+    eVal = "";
+};
+
+//Function to translate Morsecode input into English
+const toMorseFunct = (text) => {
+    if (mVal === "string") {
+        alert("Morse Code side needs to be clear for encoding");
+    }
+    return text
+        .split("")
+        .map((code) => {
+            if (alphabet2[code]) return code;
+        })
+        .join("");
 };

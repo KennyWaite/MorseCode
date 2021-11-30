@@ -50,20 +50,39 @@ const toClear = () => {
 };
 
 //Function to translate Morsecode input into English
-const toMorseFunct = (text) => {
-    if (mVal && eVal === "") {
-        alert("Please input for decoding");
-    }
-    if (mVal === "string") {
-        alert("Morse Code side needs to be clear for encoding");
-    }
+const toMorseFunct = (text, object) => {
+    // if (mVal && eVal === "") {
+    //     alert("Please input for decoding");
+    // }
+    // if (mVal === "string") {
+    //     alert("Morse Code side needs to be clear for encoding");
+    // }
     return text
-        .split("")
-        .map((code) => {
-            if (morseToAlphabet[code]) return code;
+        .split(" ")
+        .map((charCode) => {
+            if (object.hasOwnProperty(charCode)) {
+                return object[charCode];
+            } else {
+                return charCode;
+            }
         })
         .join("");
 };
+
+// const toMorseFunct = (text) => {
+//     if (mVal && eVal === "") {
+//         alert("Please input for decoding");
+//     }
+//     if (mVal === "string") {
+//         alert("Morse Code side needs to be clear for encoding");
+//     }
+//     return text
+//         .split("")
+//         .map((code) => {
+//             if (morseToAlphabet[code]) return code;
+//         })
+//         .join("");
+// };
 
 //Adding event for when Morsecode to English button is clicked
 toEnglishBtn.addEventListener("click", () => {
@@ -80,4 +99,9 @@ toEnglishBtn.addEventListener("click", (event) => {
 //Adding clear all text inputs when clear button is clicked
 clear.addEventListener("click", (event) => {
     return toClear();
+});
+
+//Adding event for when English to Morsecode button is clicked
+toMorseBtn.addEventListener("click", (event) => {
+    englishText.value = toMorseFunct(morseText.value, morseToAlphabet);
 });

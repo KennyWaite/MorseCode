@@ -7,26 +7,12 @@ const clear = document.getElementById("clear");
 const englishText = document.getElementById("englishText");
 const morseText = document.getElementById("morseText");
 
-// accessing text inside inputs
-// let morseCode = morseText.value;
-// console.log(mVal);
-// let engText = englishText.value;
-
-//Object of alphabet to check inputs against
-
-//Function to translate Morsecode input into English
-// >>>check if things are string/object/array and edit this
-// something
-
+// Function to turn Morse to English
 const toEngFunc = (code, object) => {
     if (code === "") {
         alert("Please input for decoding");
         return;
     }
-
-    // if (eVal === "string") {
-    //     alert("English Text Side needs to be clear for decoding");
-    // }
 
     return code
         .toLowerCase()
@@ -51,45 +37,18 @@ const toClear = () => {
 
 //Function to translate Morsecode input into English
 const toMorseFunct = (text, object) => {
-    // if (mVal && eVal === "") {
-    //     alert("Please input for decoding");
-    // }
-    // if (mVal === "string") {
-    //     alert("Morse Code side needs to be clear for encoding");
-    // }
     return text
-        .split(" ")
-        .map((charCode) => {
-            if (object.hasOwnProperty(charCode)) {
-                return object[charCode];
+        .toLowerCase()
+        .split("")
+        .map((char) => {
+            if (object.hasOwnProperty(char)) {
+                return object[char]; // if char = a > object[a] = .-
             } else {
-                return charCode;
+                return char;
             }
         })
-        .join("");
+        .join(" ");
 };
-
-// const toMorseFunct = (text) => {
-//     if (mVal && eVal === "") {
-//         alert("Please input for decoding");
-//     }
-//     if (mVal === "string") {
-//         alert("Morse Code side needs to be clear for encoding");
-//     }
-//     return text
-//         .split("")
-//         .map((code) => {
-//             if (morseToAlphabet[code]) return code;
-//         })
-//         .join("");
-// };
-
-//Adding event for when Morsecode to English button is clicked
-toEnglishBtn.addEventListener("click", () => {
-    // mVal += event.target;
-    let result = toEngFunc(morseText.value, morseToAlphabet);
-    return (englishText.value += result);
-});
 
 //Adding event for when English to Morsecode button is clicked
 toEnglishBtn.addEventListener("click", (event) => {
@@ -103,5 +62,5 @@ clear.addEventListener("click", (event) => {
 
 //Adding event for when English to Morsecode button is clicked
 toMorseBtn.addEventListener("click", (event) => {
-    englishText.value = toMorseFunct(morseText.value, morseToAlphabet);
+    morseText.value = toMorseFunct(englishText.value, alphabetToMorse);
 });
